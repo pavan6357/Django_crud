@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    table tr:nth-child(even){background-color: #f2f2f2;}
+</style>
+<a href="{% url 'book_create' %}" style="
+background-color: #04AA6D; border: none; padding: 15px; 
+color: white; text-decoration: none; font-weight: bold;
+border-radius: 15px; position: absolute; top: 110px; margin-left: 36px;">Add New Student</a>
+<br/>
+<br /><br />
+<ul>
+    <h2 style="text-align: center;">Student List</h2><br/>
+    <table style="font-family: Arial, Helvetica, sans-serif; border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="border: 1px solid #ddd;padding: 8px; 
+            padding-top: 12px;padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white; text-align: center;">Student Roll No</th>
+            <th style="border: 1px solid #ddd;padding: 8px; 
+            padding-top: 12px;padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white; text-align: center;">Student Name</th>
+            <th style="border: 1px solid #ddd;padding: 8px; 
+            padding-top: 12px;padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white; text-align: center;">Action</th>
+        </tr>
+        {% for book in books %}
+        <tr>
+            <td style="padding: 10px; text-align: center;">{{ book.title }}</td>
+            <td style="padding: 10px; text-align: center;">{{ book.author }}</td>
+            <td style="padding: 10px; text-align: center;">
+                <a href="{% url 'book_update' book.pk %}">Edit</a> | 
+                <a href="{% url 'book_delete' book.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+   
+</ul>
+{% endblock %}
